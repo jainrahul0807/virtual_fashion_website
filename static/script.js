@@ -434,173 +434,170 @@
 // -------------------------------------------------------------------x--------------------------------------------------------------------
 
 
-let scene, camera, renderer, avatar, controls, currentOutfit;
-function init() {
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 1, 3);
+// let scene, camera, renderer, avatar, controls, currentOutfit;
+// function init() {
+//     scene = new THREE.Scene();
+//     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+//     camera.position.set(0, 1, 3);
 
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('avatar-container').appendChild(renderer.domElement);
+//     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+//     renderer.setSize(window.innerWidth, window.innerHeight);
+//     document.getElementById('avatar-container').appendChild(renderer.domElement);
 
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
+//     controls = new THREE.OrbitControls(camera, renderer.domElement);
+//     controls.enableDamping = true;
 
-    const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
-    scene.add(light);
+//     const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
+//     scene.add(light);
 
-    // Load Avatar
-    loadAvatar('https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/avatar.glb');
+//     // Load Avatar
+//     loadAvatar('https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/avatar.glb');
 
-    // Buttons for switching clothes
-    document.getElementById("hat-button").addEventListener("click", () => {
-        loadClothingWithTextures("hat", {
-            objUrl: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/hat01.obj",
-            textures: {
-                diffuse: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/hat01/Patrol_Cap.png",
-                normal: "/https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/hat01/Patrol_Cap_NRM.png",
-                specular: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/hat01/Patrol_Cap_SPEC.png",
-            }
-        });
-    });
+//     // Buttons for switching clothes
+//     document.getElementById("hat-button").addEventListener("click", () => {
+//         loadClothingWithTextures("hat", {
+//             objUrl: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/hat01.obj",
+//             textures: {
+//                 diffuse: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/hat01/Patrol_Cap.png",
+//                 normal: "/https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/hat01/Patrol_Cap_NRM.png",
+//                 specular: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/hat01/Patrol_Cap_SPEC.png",
+//             }
+//         });
+//     });
 
-    document.getElementById("shirt-button").addEventListener("click", () => {
-        loadClothingWithTextures("shirt", {
-            objUrl: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/shirt02.obj",
-            textures: {
-                diffuse: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shirt02/Knitted_Sweater_01.png",
-                normal: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shirt02/Knitted_Sweater_01_NRM.png",
-                specular: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shirt02/Knitted_Sweater_01_SPEC.png",
-            }
-        });
-    });
+//     document.getElementById("shirt-button").addEventListener("click", () => {
+//         loadClothingWithTextures("shirt", {
+//             objUrl: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/shirt02.obj",
+//             textures: {
+//                 diffuse: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shirt02/Knitted_Sweater_01.png",
+//                 normal: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shirt02/Knitted_Sweater_01_NRM.png",
+//                 specular: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shirt02/Knitted_Sweater_01_SPEC.png",
+//             }
+//         });
+//     });
 
-    document.getElementById("pants-button").addEventListener("click", () => {
-        loadClothingWithTextures("pants", {
-            objUrl: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/pants01.obj",
-            textures: {
-                diffuse: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/pants01/M_Trousers_01.png",
-                normal: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/pants01/M_Trousers_01_NRM.png",
-                specular: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/pants01/M_Trousers_01_SPEC.png",
-            }
-        });
-    });
+//     document.getElementById("pants-button").addEventListener("click", () => {
+//         loadClothingWithTextures("pants", {
+//             objUrl: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/pants01.obj",
+//             textures: {
+//                 diffuse: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/pants01/M_Trousers_01.png",
+//                 normal: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/pants01/M_Trousers_01_NRM.png",
+//                 specular: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/pants01/M_Trousers_01_SPEC.png",
+//             }
+//         });
+//     });
 
-    document.getElementById("shoes-button").addEventListener("click", () => {
-        loadClothingWithTextures("shoes", {
-            objUrl: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/shoes01.obj",
-            textures: {
-                diffuse: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shoes01/riding_boots.png",
-                normal: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shoes01/riding_boots_norm.png",
-                // specular: "/path/to/Shoes_Specular.png",
-            }
-        });
-    });
+//     document.getElementById("shoes-button").addEventListener("click", () => {
+//         loadClothingWithTextures("shoes", {
+//             objUrl: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/shoes01.obj",
+//             textures: {
+//                 diffuse: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shoes01/riding_boots.png",
+//                 normal: "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/shoes01/riding_boots_norm.png",
+//                 // specular: "/path/to/Shoes_Specular.png",
+//             }
+//         });
+//     });
 
-    animate();
-}
+//     animate();
+// }
+// function loadAvatar(url) {
+//     const loader = new THREE.GLTFLoader();
+//     loader.load(url, function (gltf) {
+//         if (avatar) scene.remove(avatar);
+//         avatar = gltf.scene;
 
-function loadAvatar(url) {
-    const loader = new THREE.GLTFLoader();
-    loader.load(url, function (gltf) {
-        if (avatar) scene.remove(avatar);
-        avatar = gltf.scene;
+//         avatar.scale.set(0.15, 0.15, 0.15);
+//         avatar.traverse((child) => {
+//             if (child.isMesh) {
+//                 child.material = new THREE.MeshStandardMaterial({
+//                     color: 0xffdbac,
+//                 });
+//             }
+//         });
+//         avatar.position.set(0, -1, 0);
 
-        avatar.scale.set(0.15, 0.15, 0.15);
-        avatar.traverse((child) => {
-            if (child.isMesh) {
-                child.material = new THREE.MeshStandardMaterial({
-                    color: 0xffdbac,
-                });
-            }
-        });
-        avatar.position.set(0, -1, 0);
+//         scene.add(avatar);
+//     }, undefined, function (error) {
+//         console.error('Error loading avatar:', error);
+//     });
+// }
+// // Generic function to load clothing with textures
+// function loadClothingWithTextures(item, config) {
+//     const { objUrl, textures } = config;
 
-        scene.add(avatar);
-    }, undefined, function (error) {
-        console.error('Error loading avatar:', error);
-    });
-}
+//     if (!avatar) {
+//         console.error("Avatar not loaded yet!");
+//         return;
+//     }
 
-// Generic function to load clothing with textures
-function loadClothingWithTextures(item, config) {
-    const { objUrl, textures } = config;
+//     const loader = new THREE.OBJLoader();
+//     const textureLoader = new THREE.TextureLoader();
 
-    if (!avatar) {
-        console.error("Avatar not loaded yet!");
-        return;
-    }
+//     loader.load(
+//         objUrl,
+//         (obj) => {
+//             // Remove previous clothing of the same type
+//             if (clothes[item]) {
+//                 avatar.remove(clothes[item]);
+//             }
 
-    const loader = new THREE.OBJLoader();
-    const textureLoader = new THREE.TextureLoader();
+//             // Load textures
+//             const diffuseTexture = textureLoader.load(textures.diffuse);
+//             const normalTexture = textureLoader.load(textures.normal);
+//             const specularTexture = textureLoader.load(textures.specular);
 
-    loader.load(
-        objUrl,
-        (obj) => {
-            // Remove previous clothing of the same type
-            if (clothes[item]) {
-                avatar.remove(clothes[item]);
-            }
+//             // Apply textures to the material
+//             const material = new THREE.MeshStandardMaterial({
+//                 map: diffuseTexture, // Diffuse map
+//                 normalMap: normalTexture, // Normal map
+//                 metalnessMap: specularTexture, // Specular map
+//                 roughness: 0.5, // Adjust roughness as needed
+//             });
 
-            // Load textures
-            const diffuseTexture = textureLoader.load(textures.diffuse);
-            const normalTexture = textureLoader.load(textures.normal);
-            const specularTexture = textureLoader.load(textures.specular);
+//             obj.traverse((child) => {
+//                 if (child.isMesh) {
+//                     child.material = material;
+//                 }
+//             });
 
-            // Apply textures to the material
-            const material = new THREE.MeshStandardMaterial({
-                map: diffuseTexture, // Diffuse map
-                normalMap: normalTexture, // Normal map
-                metalnessMap: specularTexture, // Specular map
-                roughness: 0.5, // Adjust roughness as needed
-            });
+//             // Adjust position based on clothing type
+//             obj.scale.set(1, 1, 1);
+//             switch (item) {
+//                 case "hat":
+//                     obj.position.set(0, 0, 0); // Adjust for head
+//                     break;
+//                 case "shirt":
+//                     obj.position.set(0, 0, 0); // Adjust for torso
+//                     break;
+//                 case "pants":
+//                     obj.position.set(0, 0, 0); // Adjust for legs
+//                     break;
+//                 case "shoes":
+//                     obj.position.set(0, 0, 0); // Adjust for feet
+//                     break;
+//             }
 
-            obj.traverse((child) => {
-                if (child.isMesh) {
-                    child.material = material;
-                }
-            });
+//             // Add clothing to avatar and store reference
+//             avatar.add(obj);
+//             clothes[item] = obj;
+//         },
+//         undefined,
+//         (error) => {
+//             console.error(`Error loading ${item} model:`, error);
+//         }
+//     );
+// }
+// function animate() {
+//     requestAnimationFrame(animate);
+//     controls.update();
+//     renderer.render(scene, camera);
+// }
+// let clothes = {
+//     hat: null,
+//     shirt: null,
+//     pants: null,
+//     shoes: null,
+// };
+// init();
 
-            // Adjust position based on clothing type
-            obj.scale.set(1, 1, 1);
-            switch (item) {
-                case "hat":
-                    obj.position.set(0, 0, 0); // Adjust for head
-                    break;
-                case "shirt":
-                    obj.position.set(0, 0, 0); // Adjust for torso
-                    break;
-                case "pants":
-                    obj.position.set(0, 0, 0); // Adjust for legs
-                    break;
-                case "shoes":
-                    obj.position.set(0, 0, 0); // Adjust for feet
-                    break;
-            }
-
-            // Add clothing to avatar and store reference
-            avatar.add(obj);
-            clothes[item] = obj;
-        },
-        undefined,
-        (error) => {
-            console.error(`Error loading ${item} model:`, error);
-        }
-    );
-}
-
-function animate() {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
-}
-
-let clothes = {
-    hat: null,
-    shirt: null,
-    pants: null,
-    shoes: null,
-};
-
-init();
+// -------------------------------------------------------------------x--------------------------------------------------------------------

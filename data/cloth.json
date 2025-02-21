@@ -1,0 +1,114 @@
+{
+    "clothingLibrary": {
+      "hat": [
+        {
+          "token": "HAT001",
+          "name": "Casual Hat",
+          "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/hat01.obj",
+          "textures": {
+            "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_cap.png",
+            "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_cap_NRM.png",
+            "specular": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_cap_SPEC.png"
+          }
+        },
+        {
+          "token": "HAT002",
+          "name": "Formal Hat",
+          "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/hat02.obj",
+          "textures": {
+            "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat02/riding_helmet.png",
+            "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat02/riding_helmet_norm.png"
+            
+          }
+        },
+        {
+            "token": "HAT003",
+            "name": "Formal Hat",
+            "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/hat03.obj",
+            "textures": {
+              "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat03/Knitted_Hat_01.png",
+              "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat03/Knitted_Hat_01_NRM.png",
+              "specular": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat03/Knitted_Hat_01_SPEC.png"
+              
+            }
+          },
+          {
+            "token": "HAT004",
+            "name": "Formal Hat",
+            "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/hat04.obj",
+            "textures": {
+              "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat04/Fishing_Hat_01.png",
+              "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat04/Fishing_Hat_01_NRM.png",
+              "specular": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat04/Fishing_Hat_01_SPEC.png"
+            }
+          }
+      ],
+      "shirt": [
+        {
+          "token": "SHIRT001",
+          "name": "Casual Shirt",
+          "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/shirt01.obj",
+          "textures": {
+            "diffuse": "/path/to/Shirt01_Diffuse.png",
+            "normal": "/path/to/Shirt01_Normal.png",
+            "specular": "/path/to/Shirt01_Specular.png"
+          }
+        },
+        {
+          "token": "SHIRT002",
+          "name": "Formal Shirt",
+          "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/shirt02.obj",
+          "textures": {
+            "diffuse": "/path/to/Shirt02_Diffuse.png",
+            "normal": "/path/to/Shirt02_Normal.png",
+            "specular": "/path/to/Shirt02_Specular.png"
+          }
+        }
+      ],
+      "pants": [
+        {
+          "token": "PANTS001",
+          "name": "Casual Pants",
+          "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/pants01.obj",
+          "textures": {
+            "diffuse": "/path/to/M_Trousers_01.png",
+            "normal": "/path/to/M_Trousers_01_NRM.png",
+            "specular": "/path/to/M_Trousers_01_SPEC.png"
+          }
+        },
+        {
+          "token": "PANTS002",
+          "name": "Formal Pants",
+          "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/pants02.obj",
+          "textures": {
+            "diffuse": "/path/to/Pants02_Diffuse.png",
+            "normal": "/path/to/Pants02_Normal.png",
+            "specular": "/path/to/Pants02_Specular.png"
+          }
+        }
+      ],
+      "shoes": [
+        {
+          "token": "SHOES001",
+          "name": "Casual Shoes",
+          "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/shoes01.obj",
+          "textures": {
+            "diffuse": "/path/to/Shoes01_Diffuse.png",
+            "normal": "/path/to/Shoes01_Normal.png",
+            "specular": "/path/to/Shoes01_Specular.png"
+          }
+        },
+        {
+          "token": "SHOES002",
+          "name": "Formal Shoes",
+          "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/clothes/shoes02.obj",
+          "textures": {
+            "diffuse": "/path/to/Shoes02_Diffuse.png",
+            "normal": "/path/to/Shoes02_Normal.png",
+            "specular": "/path/to/Shoes02_Specular.png"
+          }
+        }
+      ]
+    }
+  }
+  
