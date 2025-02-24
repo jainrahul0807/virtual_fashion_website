@@ -62,8 +62,14 @@
             "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater.png",
             "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater_NRM.png",
             "specular": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater_SPEC.png"
-          }
         }
+        },
+        {
+        "name": "shirt",
+        "token": "shirt03",
+        "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/clothes/Shirt_OBJ/Shirt OBJ.obj",
+        "mtlUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion/main/static/model/clothes/Shirt_OBJ/Shirt OBJ.mtl"
+      }
       ],
       "pants": [
         {
