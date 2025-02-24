@@ -4,8 +4,6 @@
 // const submitButton = document.getElementById("submitButton");
 // let currentStep = 0;
 
-const { OBJLoader } = require("three/examples/jsm/Addons.js");
-
 // // Show current step
 // function showStep() {
 //     formSteps.forEach((step, index) => {
@@ -696,37 +694,9 @@ function loadClothingWithTextures(clothing) {
         return;
     }
     
-    const mtlLoader=new THREE.MTLLoader()
     const loader = new THREE.OBJLoader();
     const textureLoader = new THREE.TextureLoader();
 
-
-    mtlLoader.load(clothing.mtlUrl, (materials) => {
-        materials.preload();
-        objLoader.setMaterials(materials);
-        
-        objLoader.load(clothing.objUrl, function (obj) {
-            // Remove previous clothing of the same type
-            let category = getClothingCategory(clothing.token);
-            if (clothes[category]) {
-                avatar.remove(clothes[category]);
-            }
-
-            // Adjust position
-            obj.scale.set(1, 1, 1);
-            obj.position.set(0, 0, 0);
-
-            // Add clothing to avatar
-            avatar.add(obj);
-            clothes[category] = obj;
-        }, undefined, function (error) {
-            console.error(`Error loading clothing:`, error);
-        });
-
-    }, undefined, function (error) {
-        console.error(`Error loading MTL file:`, error);
-    });
-}
     loader.load(clothing.objUrl, function (obj) {
         // Remove previous clothing of the same type
         let category = getClothingCategory(clothing.token);
@@ -757,20 +727,13 @@ function loadClothingWithTextures(clothing) {
     }, undefined, function (error) {
         console.error(`Error loading clothing:`, error);
     });
-
+}
 
 // Switch Clothing using Token
 function switchClothingByToken(token) {
     const clothing = getClothingByToken(token);
     if (clothing) {
         loadClothingWithTextures(clothing);
-    }
-}
-
-function switchClothingByToken(token) {
-    const clothing = getClothingByToken(token);
-    if (clothing) {
-        loadClothingWithMaterials(clothing);
     }
 }
 

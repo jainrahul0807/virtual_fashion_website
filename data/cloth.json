@@ -6,9 +6,9 @@
           "name": "Casual Hat",
           "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/clothes/hat01.obj",
           "textures": {
-            "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_cap.png",
-            "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_cap_NRM.png",
-            "specular": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_cap_SPEC.png"
+            "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_Cap.png",
+            "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_Cap_NRM.png",
+            "specular": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/hat01/Patrol_Cap_SPEC.png"
           }
         },
         {
@@ -59,9 +59,9 @@
           "name": "Formal Shirt",
           "objUrl": "https://raw.githubusercontent.com/jainrahul0807virtual_fashion_website/main/static/model/clothes/shirt02.obj",
           "textures": {
-            "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater.png",
-            "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater_NRM.png",
-            "specular": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater_SPEC.png"
+            "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater_01.png",
+            "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater_01_NRM.png",
+            "specular": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shirt02/Knitted_Sweater_01_SPEC.png"
         }
         },
         {
@@ -108,8 +108,8 @@
           "name": "Formal Shoes",
           "objUrl": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/clothes/shoes02.obj",
           "textures": {
-            "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shoes02/martialshoes.png",
-            "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shoes02/martialshoes_normals.png"
+            "diffuse": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shoes02/martialartshoes.png",
+            "normal": "https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/textures/shoes02/martialartshoes_normals.png"
             
           }
         }
