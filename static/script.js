@@ -602,6 +602,161 @@
 
 // -------------------------------------------------------------------x--------------------------------------------------------------------
 
+// let scene, camera, renderer, avatar, controls;
+// let clothes = {}; // Store currently worn clothes
+// let clothingLibrary = {}; // Store loaded clothing data
+
+// function init() {
+//     scene = new THREE.Scene();
+//     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+//     camera.position.set(0, 1, 3);
+
+//     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+//     renderer.setSize(window.innerWidth, window.innerHeight);
+//     document.getElementById('avatar-container').appendChild(renderer.domElement);
+
+//     controls = new THREE.OrbitControls(camera, renderer.domElement);
+//     controls.enableDamping = true;
+
+//     const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
+//     scene.add(light);
+
+//     // Load Avatar
+//     loadAvatar('https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/avatar.glb');
+
+//     // Load clothing library JSON
+//     loadClothingLibrary('https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/data/cloth.json'
+// );
+
+//     animate();
+// }
+
+// // Load Clothing Library JSON
+// function loadClothingLibrary(url) {
+//     fetch(url)
+//         .then(response => response.json())
+//         .then(data => {
+//             clothingLibrary = data.clothingLibrary;
+//             createClothingButtons();
+//         })
+//         .catch(error => console.error("Error loading clothing library:", error));
+// }
+
+// // Create Clothing Buttons Dynamically
+// function createClothingButtons() {
+//     const controlsDiv = document.getElementById("controls");
+//     for (const category in clothingLibrary) {
+//         clothingLibrary[category].forEach(clothing => {
+//             const button = document.createElement("button");
+//             button.textContent = clothing.name;
+//             button.onclick = () => switchClothingByToken(clothing.token);
+//             controlsDiv.appendChild(button);
+//         });
+//     }
+// }
+
+// // Load Avatar Model
+// function loadAvatar(url) {
+//     const loader = new THREE.GLTFLoader();
+//     loader.load(url, function (gltf) {
+//         if (avatar) scene.remove(avatar);
+//         avatar = gltf.scene;
+
+//         avatar.scale.set(0.15, 0.15, 0.15);
+//         avatar.traverse((child) => {
+//             if (child.isMesh) {
+//                 child.material = new THREE.MeshStandardMaterial({ color: 0xffdbac });
+//             }
+//         });
+//         avatar.position.set(0, -1, 0);
+
+//         scene.add(avatar);
+//     }, undefined, function (error) {
+//         console.error('Error loading avatar:', error);
+//     });
+// }
+
+// // Get Clothing Item by Token
+// function getClothingByToken(token) {
+//     for (const category in clothingLibrary) {
+//         const items = clothingLibrary[category];
+//         const item = items.find(clothing => clothing.token === token);
+//         if (item) return item;
+//     }
+//     console.warn(`No clothing found for token: ${token}`);
+//     return null;
+// }
+
+// // Load Clothing with Textures
+// function loadClothingWithTextures(clothing) {
+//     if (!avatar) {
+//         console.error("Avatar not loaded yet!");
+//         return;
+//     }
+    
+//     const loader = new THREE.OBJLoader();
+//     const textureLoader = new THREE.TextureLoader();
+
+//     loader.load(clothing.objUrl, function (obj) {
+//         // Remove previous clothing of the same type
+//         let category = getClothingCategory(clothing.token);
+//         if (clothes[category]) {
+//             avatar.remove(clothes[category]);
+//         }
+
+//         // Apply textures
+//         obj.traverse((child) => {
+//             if (child.isMesh) {
+//                 let material = new THREE.MeshStandardMaterial({
+//                     map: clothing.textures.diffuse ? textureLoader.load(clothing.textures.diffuse) : null,
+//                     normalMap: clothing.textures.normal ? textureLoader.load(clothing.textures.normal) : null,
+//                     specularMap: clothing.textures.specular ? textureLoader.load(clothing.textures.specular) : null
+//                 });
+//                 child.material = material;
+//             }
+//         });
+
+//         // Position adjustments
+//         obj.scale.set(1, 1, 1);
+//         obj.position.set(0, 0, 0);
+
+//         // Add clothing to avatar
+//         avatar.add(obj);
+//         clothes[category] = obj;
+
+//     }, undefined, function (error) {
+//         console.error(`Error loading clothing:`, error);
+//     });
+// }
+
+// // Switch Clothing using Token
+// function switchClothingByToken(token) {
+//     const clothing = getClothingByToken(token);
+//     if (clothing) {
+//         loadClothingWithTextures(clothing);
+//     }
+// }
+
+// // Get Clothing Category from Token
+// function getClothingCategory(token) {
+//     for (const category in clothingLibrary) {
+//         if (clothingLibrary[category].some(item => item.token === token)) {
+//             return category;
+//         }
+//     }
+//     return null;
+// }
+
+// function animate() {
+//     requestAnimationFrame(animate);
+//     controls.update();
+//     renderer.render(scene, camera);
+// }
+
+// init();
+
+// -------------------------------------------------------------------x--------------------------------------------------------------------
+
 let scene, camera, renderer, avatar, controls;
 let clothes = {}; // Store currently worn clothes
 let clothingLibrary = {}; // Store loaded clothing data
@@ -625,8 +780,7 @@ function init() {
     loadAvatar('https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/static/model/avatar.glb');
 
     // Load clothing library JSON
-    loadClothingLibrary('https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/data/cloth.json'
-);
+    loadClothingLibrary('https://raw.githubusercontent.com/jainrahul0807/virtual_fashion_website/main/data/cloth.json');
 
     animate();
 }
@@ -687,45 +841,40 @@ function getClothingByToken(token) {
     return null;
 }
 
-// Load Clothing with Textures
-function loadClothingWithTextures(clothing) {
+// Load Clothing with OBJ & MTL
+function loadClothingWithMaterials(clothing) {
     if (!avatar) {
         console.error("Avatar not loaded yet!");
         return;
     }
-    
+
+    const mtlLoader = new THREE.MTLLoader();
     const loader = new THREE.OBJLoader();
-    const textureLoader = new THREE.TextureLoader();
 
-    loader.load(clothing.objUrl, function (obj) {
-        // Remove previous clothing of the same type
-        let category = getClothingCategory(clothing.token);
-        if (clothes[category]) {
-            avatar.remove(clothes[category]);
-        }
-
-        // Apply textures
-        obj.traverse((child) => {
-            if (child.isMesh) {
-                let material = new THREE.MeshStandardMaterial({
-                    map: clothing.textures.diffuse ? textureLoader.load(clothing.textures.diffuse) : null,
-                    normalMap: clothing.textures.normal ? textureLoader.load(clothing.textures.normal) : null,
-                    specularMap: clothing.textures.specular ? textureLoader.load(clothing.textures.specular) : null
-                });
-                child.material = material;
+    mtlLoader.load(clothing.mtlUrl, (materials) => {
+        materials.preload();
+        loader.setMaterials(materials);
+        
+        loader.load(clothing.objUrl, function (obj) {
+            // Remove previous clothing of the same type
+            let category = getClothingCategory(clothing.token);
+            if (clothes[category]) {
+                avatar.remove(clothes[category]);
             }
+
+            // Adjust position
+            obj.scale.set(1, 1, 1);
+            obj.position.set(0, 0, 0);
+
+            // Add clothing to avatar
+            avatar.add(obj);
+            clothes[category] = obj;
+        }, undefined, function (error) {
+            console.error(`Error loading clothing:`, error);
         });
 
-        // Position adjustments
-        obj.scale.set(1, 1, 1);
-        obj.position.set(0, 0, 0);
-
-        // Add clothing to avatar
-        avatar.add(obj);
-        clothes[category] = obj;
-
     }, undefined, function (error) {
-        console.error(`Error loading clothing:`, error);
+        console.error(`Error loading MTL file:`, error);
     });
 }
 
@@ -733,7 +882,7 @@ function loadClothingWithTextures(clothing) {
 function switchClothingByToken(token) {
     const clothing = getClothingByToken(token);
     if (clothing) {
-        loadClothingWithTextures(clothing);
+        loadClothingWithMaterials(clothing);
     }
 }
 
